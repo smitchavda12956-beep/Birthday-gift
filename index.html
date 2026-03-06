@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Anjali - A Birthday Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --cyan: #00bcd4; --navy: #0f1c2e; }
+
+        body, html {
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            font-family: 'Poppins', sans-serif; overflow: hidden;
+            transition: background 1.2s ease-in-out; touch-action: manipulation;
+        }
+
+        .page {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: opacity 0.8s ease;
+            text-align: center; padding: 20px; box-sizing: border-box;
+        }
+        .active { opacity: 1; visibility: visible; }
+
+        /* Page Themes */
+        #page1 { background: #0b0d17; color: #f1f1f1; } 
+        #page2 { background: #2b121c; color: #ffd1dc; } 
+        #page3 { background: var(--navy); color: #b2ebf2; } 
+        #page4 { background: #16261a; color: #c8e6c9; } 
+        #page5 { background: #331800; color: #ffe0b2; } 
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.2rem, 8vw, 4rem); margin-bottom: 10px; }
+        .subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(0.9rem, 4vw, 1.1rem); opacity: 0.9; max-width: 500px; line-height: 1.6; }
+
+        .btn {
+            background: transparent; border: 1.5px solid currentColor; color: inherit;
+            padding: 12px 30px; border-radius: 50px; cursor: pointer; transition: 0.3s;
+            margin-top: 25px; font-weight: 600; font-size: 0.9rem; z-index: 100;
+        }
+
+        /* --- SMALL PAGE 3 BUTTON AT BOTTOM --- */
+        .bottom-nav {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .glossy-btn-small {
+            background: linear-gradient(135deg, rgba(15, 28, 46, 0.9) 0%, rgba(0, 188, 212, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--cyan); 
+            box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+            color: #b2ebf2 !important; 
+            text-shadow: 0px 0px 5px rgba(0, 188, 212, 0.8);
+            
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.4s all ease;
+            min-width: 160px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            animation: cyan-pulse 2.5s infinite;
+        }
+
+        @keyframes cyan-pulse {
+            0% { box-shadow: 0 0 8px rgba(0, 188, 212, 0.3); transform: scale(1); }
+            50% { box-shadow: 0 0 18px rgba(0, 188, 212, 0.6); transform: scale(1.02); }
+            100% { box-shadow: 0 0 8px rgba(0, 188, 212, 0.3); transform: scale(1); }
+        }
+
+        /* --- ENVELOPE & LETTER --- */
+        .envelope-wrapper { position: relative; width: clamp(260px, 80vw, 300px); height: 180px; perspective: 1500px; cursor: pointer; margin-bottom: 60px;}
+        .envelope { position: absolute; width: 100%; height: 100%; background: #e0e0e0; border-radius: 0 0 10px 10px; z-index: 3; transition: opacity 0.4s ease; }
+        .top-flap { position: absolute; top: 0; left: 0; width: 0; height: 0; border-left: clamp(130px, 40vw, 150px) solid transparent; border-right: clamp(130px, 40vw, 150px) solid transparent; border-top: 100px solid #bdbdbd; transform-origin: top; transition: transform 0.5s, opacity 0.4s; z-index: 4; }
+        .letter { position: absolute; width: 95%; height: 95%; left: 2.5%; top: 2.5%; background: #fff; padding: 25px; box-sizing: border-box; color: #333; border-radius: 8px; z-index: 2; transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .open .envelope, .open .top-flap { opacity: 0; pointer-events: none; }
+        .open .letter { transform: scale(1.05) translateY(-30px); z-index: 10; height: auto; min-height: 280px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); border-radius: 12px; }
+
+        /* --- CAKE & COUNTDOWN --- */
+        .cake-container { position: relative; width: 140px; height: 140px; margin-bottom: 20px; }
+        .cake { position: absolute; bottom: 0; width: 110px; height: 60px; background: #fdf5e6; border-radius: 10px 10px 0 0; left: 50%; transform: translateX(-50%); box-shadow: inset 0 10px 0 #fff, 0 5px 15px rgba(0,0,0,0.3); }
+        .candle { position: absolute; bottom: 60px; left: 50%; width: 8px; height: 30px; background: #ff4d6d; transform: translateX(-50%); border-radius: 3px; }
+        .flame { position: absolute; top: -15px; left: 50%; width: 12px; height: 18px; background: radial-gradient(#fff, #ffa500, #ff4500); border-radius: 50% 50% 20% 20%; transform: translateX(-50%); box-shadow: 0 0 15px #ff4500; animation: flicker 0.5s infinite alternate; }
+        .extinguished .flame { display: none; }
+        
+        .countdown-container { display: flex; gap: 10px; margin-top: 25px; flex-wrap: wrap; justify-content: center; }
+        .time-box { border: 2px solid currentColor; padding: 12px; border-radius: 12px; min-width: 65px; background: rgba(255, 255, 255, 0.08); }
+        .time-box span { display: block; font-size: 1.4rem; font-weight: bold; }
+        .time-box small { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .heart { position: absolute; bottom: -50px; z-index: 1; animation: rise 7s linear infinite; pointer-events: none; }
+        @keyframes rise { 0% { transform: translateY(0); opacity: 0; } 50% { opacity: 0.7; } 100% { transform: translateY(-110vh); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <div style="position:fixed; top:-999px; left:-999px;"><div id="player"></div></div>
+
+    <div id="page1" class="page active">
+        <p style="letter-spacing: 6px; font-size: 0.75rem;">EST. APRIL 21, 2007</p>
+        <h1 style="color:var(--gold);">Anjali, A Beautiful Soul</h1>
+        <p class="subtitle">"The world became a melody the day you arrived."</p>
+        <button class="btn" onclick="startJourney()">Begin the Journey</button>
+    </div>
+
+    <div id="page2" class="page">
+        <div class="cake-container" id="cake-box">
+            <div class="candle"><div class="flame"></div></div>
+            <div class="cake"></div>
+        </div>
+        <h1 style="color:#ff4d6d;">A Moment for You</h1>
+        <p class="subtitle">"Close your eyes and let your heart speak. Every flicker of this candle carries a wish for your endless happiness."</p>
+        <button class="btn" onclick="blowCandle()">Make a Wish</button>
+    </div>
+
+    <div id="page3" class="page">
+        <h1 style="color:var(--cyan); margin-bottom: 20px;">From Smit to Anjali</h1>
+        
+        <div class="envelope-wrapper" id="env-wrapper" onclick="toggleEnv()">
+            <div class="top-flap"></div>
+            <div class="envelope"></div> 
+            <div class="letter"> 
+                <h3 style="font-family: 'Dancing Script'; margin: 0; font-size: 1.8rem; color: #d4af37;">Happy Birthday Anjali</h3>
+                <p style="font-size: 0.85rem; line-height: 1.6; margin-top: 15px;">Since April 2007, you have been a masterpiece. May this year bring you as much happiness as the light you give to the world every single day.</p>
+                <p style="font-family: 'Dancing Script'; font-size: 1.4rem; color: #d4af37; margin-top: 15px;">With love, Smit</p>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="glossy-btn-small" id="next-btn" style="visibility: hidden;" onclick="nextPage(4)">The Journey Ahead</button>
+        </div>
+    </div>
+
+    <div id="page4" class="page">
+        <h1 style="color:#4caf50;">Your Golden Horizon</h1>
+        <p class="subtitle">"Your story is still being written, and the best chapters are yet to come."</p>
+        <div class="countdown-container">
+            <div class="time-box"><span id="days">00</span><small>Days</small></div>
+            <div class="time-box"><span id="hours">00</span><small>Hrs</small></div>
+            <div class="time-box"><span id="mins">00</span><small>Mins</small></div>
+            <div class="time-box"><span id="secs">00</span><small>Secs</small></div>
+        </div>
+        <button class="btn" onclick="nextPage(5)">One Last Word</button>
+    </div>
+
+    <div id="page5" class="page">
+        <h1 style="color:#ff9800;">For Anjali</h1>
+        <p class="subtitle">"Trust your journey, believe in your light, and always remember Smit is cheering for you."</p>
+        <div style="margin-top: 30px;">
+            <p style="font-family:'Dancing Script'; font-size: 1.8rem; margin:0;">You are the bestest friend ever.</p>
+            <p style="font-size:1rem; opacity: 0.8; margin-top: 5px;">— Smit</p>
+        </div>
+        <button class="btn" onclick="location.reload()">Replay</button>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        var player; var apiReady = false;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0', width: '0', videoId: 'OWKag_BKXJQ',
+                playerVars: { 'autoplay': 0, 'loop': 1, 'playlist': 'OWKag_BKXJQ', 'playsinline': 1 },
+                events: { 'onReady': function() { apiReady = true; } }
+            });
+        }
+        function startJourney() { if (apiReady && player) { player.playVideo(); player.setVolume(100); } nextPage(2); }
+        function blowCandle() {
+            document.getElementById('cake-box').classList.add('extinguished');
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            setTimeout(() => nextPage(3), 1500);
+        }
+        function toggleEnv() {
+            document.getElementById('env-wrapper').classList.add('open');
+            document.getElementById('next-btn').style.visibility = "visible";
+            confetti({ particleCount: 40, spread: 60 });
+        }
+        function nextPage(num) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + num).classList.add('active');
+            if (num === 2) startHearts();
+        }
+        function startHearts() {
+            setInterval(() => {
+                const h = document.createElement('div');
+                h.innerHTML = '❤️'; h.className = 'heart';
+                h.style.left = Math.random() * 100 + 'vw';
+                h.style.color = 'white';
+                h.style.fontSize = Math.random() * 20 + 10 + 'px';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 7000);
+            }, 1000);
+        }
+        function updateTimer() {
+            const diff = new Date("April 21, 2027 00:00:00").getTime() - new Date().getTime();
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff/(1000*60*60*24));
+                document.getElementById("hours").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+                document.getElementById("mins").innerText = Math.floor((diff%(1000*60*60))/(1000*60));
+                document.getElementById("secs").innerText = Math.floor((diff%(1000*60))/1000);
+            }
+        }
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
