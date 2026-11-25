@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For Anjali - A Birthday Journey</title>
+    <title>For Riddhi - A Birthday Journey</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --cyan: #00bcd4; --navy: #0f1c2e; }
@@ -23,11 +24,11 @@
         .active { opacity: 1; visibility: visible; }
 
         /* Page Themes */
-        #page1 { background: #0b0d17; color: #f1f1f1; } 
-        #page2 { background: #2b121c; color: #ffd1dc; } 
-        #page3 { background: var(--navy); color: #b2ebf2; } 
-        #page4 { background: #16261a; color: #c8e6c9; } 
-        #page5 { background: #331800; color: #ffe0b2; } 
+        #page1 { background: #0b0d17; color: #f1f1f1; }
+        #page2 { background: #2b121c; color: #ffd1dc; }
+        #page3 { background: var(--navy); color: #b2ebf2; }
+        #page4 { background: #16261a; color: #c8e6c9; }
+        #page5 { background: #331800; color: #ffe0b2; }
 
         h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2.2rem, 8vw, 4rem); margin-bottom: 10px; }
         .subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(0.9rem, 4vw, 1.1rem); opacity: 0.9; max-width: 500px; line-height: 1.6; }
@@ -52,11 +53,10 @@
             background: linear-gradient(135deg, rgba(15, 28, 46, 0.9) 0%, rgba(0, 188, 212, 0.3) 100%);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1.5px solid var(--cyan); 
+            border: 1.5px solid var(--cyan);
             box-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
-            color: #b2ebf2 !important; 
+            color: #b2ebf2 !important;
             text-shadow: 0px 0px 5px rgba(0, 188, 212, 0.8);
-            
             font-size: 0.8rem;
             font-weight: 700;
             padding: 12px 25px;
@@ -88,8 +88,12 @@
         .cake { position: absolute; bottom: 0; width: 110px; height: 60px; background: #fdf5e6; border-radius: 10px 10px 0 0; left: 50%; transform: translateX(-50%); box-shadow: inset 0 10px 0 #fff, 0 5px 15px rgba(0,0,0,0.3); }
         .candle { position: absolute; bottom: 60px; left: 50%; width: 8px; height: 30px; background: #ff4d6d; transform: translateX(-50%); border-radius: 3px; }
         .flame { position: absolute; top: -15px; left: 50%; width: 12px; height: 18px; background: radial-gradient(#fff, #ffa500, #ff4500); border-radius: 50% 50% 20% 20%; transform: translateX(-50%); box-shadow: 0 0 15px #ff4500; animation: flicker 0.5s infinite alternate; }
+        @keyframes flicker {
+            from { opacity: 0.8; transform: translateX(-50%) scale(0.9); }
+            to { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
         .extinguished .flame { display: none; }
-        
+
         .countdown-container { display: flex; gap: 10px; margin-top: 25px; flex-wrap: wrap; justify-content: center; }
         .time-box { border: 2px solid currentColor; padding: 12px; border-radius: 12px; min-width: 65px; background: rgba(255, 255, 255, 0.08); }
         .time-box span { display: block; font-size: 1.4rem; font-weight: bold; }
@@ -104,8 +108,8 @@
     <div style="position:fixed; top:-999px; left:-999px;"><div id="player"></div></div>
 
     <div id="page1" class="page active">
-        <p style="letter-spacing: 6px; font-size: 0.75rem;">EST. APRIL 22, 2007</p>
-        <h1 style="color:var(--gold);">Anjali, A Beautiful Soul</h1>
+        <p style="letter-spacing: 6px; font-size: 0.75rem;">EST. DECEMBER 8, 2006</p>
+        <h1 style="color:var(--gold);">Riddhi, A Beautiful Soul</h1>
         <p class="subtitle">"The world became a melody the day you arrived."</p>
         <button class="btn" onclick="startJourney()">Begin the Journey</button>
     </div>
@@ -121,14 +125,14 @@
     </div>
 
     <div id="page3" class="page">
-        <h1 style="color:var(--cyan); margin-bottom: 20px;">From Smit to Anjali</h1>
-        
+        <h1 style="color:var(--cyan); margin-bottom: 20px;">From Smit to Riddhi</h1>
+
         <div class="envelope-wrapper" id="env-wrapper" onclick="toggleEnv()">
             <div class="top-flap"></div>
-            <div class="envelope"></div> 
-            <div class="letter"> 
-                <h3 style="font-family: 'Dancing Script'; margin: 0; font-size: 1.8rem; color: #d4af37;">Happy Birthday Anjali</h3>
-                <p style="font-size: 0.85rem; line-height: 1.6; margin-top: 15px;">Since April 2007, you have been a masterpiece. May this year bring you as much happiness as the light you give to the world every single day.</p>
+            <div class="envelope"></div>
+            <div class="letter">
+                <h3 style="font-family: 'Dancing Script'; margin: 0; font-size: 1.8rem; color: #d4af37;">Happy Birthday Riddhi</h3>
+                <p style="font-size: 0.85rem; line-height: 1.6; margin-top: 15px;">Since December 2006, you have been a masterpiece. May this year bring you as much happiness as the light you give to the world every single day.</p>
                 <p style="font-family: 'Dancing Script'; font-size: 1.4rem; color: #d4af37; margin-top: 15px;">With love, Smit</p>
             </div>
         </div>
@@ -151,7 +155,7 @@
     </div>
 
     <div id="page5" class="page">
-        <h1 style="color:#ff9800;">For Anjali</h1>
+        <h1 style="color:#ff9800;">For Riddhi</h1>
         <p class="subtitle">"Trust your journey, believe in your light,Even if a thousand friend no one could ever be YOU and always remember Smit is cheering for you."</p>
         <div style="margin-top: 30px;">
             <p style="font-family:'Dancing Script'; font-size: 1.8rem; margin:0;">You are the bestest friend ever.</p>
@@ -164,6 +168,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
         var player; var apiReady = false;
+
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '0', width: '0', videoId: 'OWKag_BKXJQ',
@@ -171,26 +176,38 @@
                 events: { 'onReady': function() { apiReady = true; } }
             });
         }
-        function startJourney() { if (apiReady && player) { player.playVideo(); player.setVolume(100); } nextPage(2); }
+
+        function startJourney() {
+            if (apiReady && player) {
+                player.playVideo();
+                player.setVolume(100);
+            }
+            nextPage(2);
+        }
+
         function blowCandle() {
             document.getElementById('cake-box').classList.add('extinguished');
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
             setTimeout(() => nextPage(3), 1500);
         }
+
         function toggleEnv() {
             document.getElementById('env-wrapper').classList.add('open');
             document.getElementById('next-btn').style.visibility = "visible";
             confetti({ particleCount: 40, spread: 60 });
         }
+
         function nextPage(num) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page' + num).classList.add('active');
             if (num === 2) startHearts();
         }
+
         function startHearts() {
             setInterval(() => {
                 const h = document.createElement('div');
-                h.innerHTML = '❤️'; h.className = 'heart';
+                h.innerHTML = '❤️';
+                h.className = 'heart';
                 h.style.left = Math.random() * 100 + 'vw';
                 h.style.color = 'white';
                 h.style.fontSize = Math.random() * 20 + 10 + 'px';
@@ -198,15 +215,24 @@
                 setTimeout(() => h.remove(), 7000);
             }, 1000);
         }
+
         function updateTimer() {
-            const diff = new Date("April 21, 2027 00:00:00").getTime() - new Date().getTime();
+            const diff = new Date("December 8, 2026 00:00:00").getTime() - new Date().getTime();
+
             if (diff > 0) {
                 document.getElementById("days").innerText = Math.floor(diff/(1000*60*60*24));
                 document.getElementById("hours").innerText = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
                 document.getElementById("mins").innerText = Math.floor((diff%(1000*60*60))/(1000*60));
                 document.getElementById("secs").innerText = Math.floor((diff%(1000*60))/1000);
+            } else {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("mins").innerText = "00";
+                document.getElementById("secs").innerText = "00";
             }
         }
+
+        updateTimer();
         setInterval(updateTimer, 1000);
     </script>
 </body>
